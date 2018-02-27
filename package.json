@@ -1,0 +1,17 @@
+{
+  "name": "generator-react",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nischithbm/generator-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^2.0.3"
+  }
+}
