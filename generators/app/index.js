@@ -6,6 +6,9 @@ class ReactGenerator extends Generator {
 	    // Calling the super constructor is important so our generator is correctly set up
 	    super(args, opts);
 
+	    // This makes `appname` a required argument.
+	    this.argument('appname', { type: String, required: true });
+
 	    // Next, add your custom code
 	    this.option('babel'); // This method adds support for a `--babel` flag
 
@@ -19,7 +22,22 @@ class ReactGenerator extends Generator {
 	}
 
 	prompting() {
-		this.log('prompting');
+		return this.prompt([{
+	      	type    : 'input',
+	      	name    : 'name',
+	      	message : 'Your project name',
+	      	default : this.options.appname,
+			store   : true
+	    }, {
+	      	type    : 'confirm',
+	      	name    : 'cool',
+	      	message : 'Would you like to enable the Cool feature?',
+	      	default : false,
+	      	store   : true
+	    }]).then((answers) => {
+	      	this.log('app name', answers.name);
+	      	this.log('cool feature', answers.cool);
+	    });
 	}
 
 	configuring() {
@@ -33,6 +51,11 @@ class ReactGenerator extends Generator {
 	}
 	install() {
 		this.log('install');
+		this.installDependencies({
+	      	npm: false,
+	      	bower: false,
+	      	yarn: true
+	    });
 	}
 	end() {
 		this.log('end');
